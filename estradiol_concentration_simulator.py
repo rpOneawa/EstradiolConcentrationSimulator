@@ -1,13 +1,16 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('tkagg')
 
 # Constants
-gel_mass = 3.75  # g
+gel_mass = 5  # g
 estradiol_concentration = 0.6  # mg/g
 bioavailability = 0.1  # 10%
 blood_volume = 3.5432  # L
 half_life = 37.0  # hours
 dose_interval = 24.0  # hours
-days = 30
+days = 15
 
 # Convert units
 blood_volume_ml = blood_volume * 1000  # L to ml
@@ -35,3 +38,13 @@ for i, t in enumerate(time_hours):
 for t, c in zip(time_hours, estradiol_concentration_pg_ml):
     #print(f"Time: {t} hours, Estradiol concentration: {c/1000} pg/ml")
     print(f"{t} h, {c/1000} pg/ml")
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.plot(time_hours, estradiol_concentration_pg_ml/1000, label='Estradiol concentration')
+plt.xlabel('Time (hours)')
+plt.ylabel('Estradiol concentration (pg/ml)')
+plt.title('Estradiol concentration over time')
+plt.legend()
+plt.grid(True)
+plt.show()
